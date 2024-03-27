@@ -10,7 +10,7 @@ jobs:
         url: '${{ vars.GITPULLER_HOST }}/gitpuller.php'
         method: 'POST'
         customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"repo": "${{ vars.GITHUB_REPOSITORY }}", "GITPULLER_KEY": "${{ secrets.GITPULLER_KEY }}"}'
+        data: '{"repo": "${{ github.repository }}", "GITPULLER_KEY": "${{ secrets.GITPULLER_KEY }}"}'
     - name: Response
       run: |
         echo ${{ steps.PullRequest.outputs.response }}
