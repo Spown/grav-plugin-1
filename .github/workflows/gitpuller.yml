@@ -7,10 +7,10 @@ jobs:
       id: PullRequest
       uses: fjogeleit/http-request-action@v1
       with:
-        url: '${{ env.GITPULLER_HOST }}/gitpuller.php'
+        url: '${{ vars.GITPULLER_HOST }}/gitpuller.php'
         method: 'POST'
         customHeaders: '{"Content-Type": "application/json"}'
-        data: '{"repo": "${{ env.GITHUB_REPOSITORY }}", "GITPULLER_KEY": "${{ secrets.GITPULLER_KEY }}"}'
+        data: '{"repo": "${{ vars.GITHUB_REPOSITORY }}", "GITPULLER_KEY": "${{ secrets.GITPULLER_KEY }}"}'
     - name: Response
       run: |
         echo ${{ steps.PullRequest.outputs.response }}
