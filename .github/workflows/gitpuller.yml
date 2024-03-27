@@ -1,0 +1,18 @@
+on: [push]
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy
+      id: PullRequest
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: '${{ env.GITPULLER_HOST }}/gitpuller.php'
+        method: 'POST'
+        customHeaders: '{"Content-Type": "application/json"}'
+        data: '{"repo": "${{ env.GITHUB_REPOSITORY }}", "GITPULLER_KEY": "${{ secrets.GITPULLER_KEY }}"}'
+    - name: Response
+      run: |
+        echo ${{ steps.PullRequest.outputs.response }}
+        echo ${{ steps.PullRequest.outputs.headers }}
+        echo ${{ fromJson(steps.PullRequest.outputs.response).result }}
