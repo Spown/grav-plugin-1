@@ -1,7 +1,7 @@
 on: [push]
 jobs:
   deployment:
-    uses: "../gitpuller.yml@main"
+    uses: "Spown/grav-main-slot/.github/workflows/gitpuller_tmpl.yml@main"
     with: 
       GITPULLER_HOST: ${{ vars.GITPULLER_HOST }}
     secrets: inherit
